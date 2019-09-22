@@ -1,0 +1,47 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "grupoamigoBackend",
+    "packageName": "com.grupoamigo.backend",
+    "packageFolder": "com/grupoamigo/backend",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "clientFramework": "react",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "6.3.1",
+    "jwtSecretKey": "NDA1ODJmYTkwYmE0MGEzNTM5ODIyMjg3MjcyMDU5Yjk4YjEzNWVjM2M5NDM4MmMxN2JhMWI5Y2I4YWIwOGUwYzIxNjUyYjRiYzBiODgyNzEzNDlhOTNiODJiMDhkYmUwYWY5NGIzZTNhMDU1ZDY1YjcyZTljMzllMDRjNDkwZWY=",
+    "embeddableLaunchScript": false,
+    "clientTheme": "none",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "blueprints": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "grupoamigo",
+  "repository-name": "grupoamigo-backend"
+}
