@@ -7,6 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IUser } from 'app/shared/model/user.model';
+import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { ILoad } from 'app/shared/model/load.model';
 import { getEntities as getLoads } from 'app/entities/load/load.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './driver.reducer';
@@ -18,6 +20,7 @@ export interface IDriverUpdateProps extends StateProps, DispatchProps, RouteComp
 
 export interface IDriverUpdateState {
   isNew: boolean;
+  userId: string;
   loadsId: string;
 }
 
@@ -25,6 +28,7 @@ export class DriverUpdate extends React.Component<IDriverUpdateProps, IDriverUpd
   constructor(props) {
     super(props);
     this.state = {
+      userId: '0',
       loadsId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
@@ -43,6 +47,7 @@ export class DriverUpdate extends React.Component<IDriverUpdateProps, IDriverUpd
       this.props.getEntity(this.props.match.params.id);
     }
 
+    this.props.getUsers();
     this.props.getLoads();
   }
 
@@ -75,7 +80,7 @@ export class DriverUpdate extends React.Component<IDriverUpdateProps, IDriverUpd
   };
 
   render() {
-    const { driverEntity, loads, loading, updating } = this.props;
+    const { driverEntity, users, loads, loading, updating } = this.props;
     const { isNew } = this.state;
 
     const { officialId, officialIdContentType, picture, pictureContentType } = driverEntity;
@@ -196,6 +201,21 @@ export class DriverUpdate extends React.Component<IDriverUpdateProps, IDriverUpd
                     <AvInput type="hidden" name="picture" value={picture} />
                   </AvGroup>
                 </AvGroup>
+                <AvGroup>
+                  <Label for="driver-user">
+                    <Translate contentKey="grupoamigoBackendApp.driver.user">User</Translate>
+                  </Label>
+                  <AvInput id="driver-user" type="select" className="form-control" name="user.id">
+                    <option value="" key="0" />
+                    {users
+                      ? users.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.email}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/driver" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -219,6 +239,7 @@ export class DriverUpdate extends React.Component<IDriverUpdateProps, IDriverUpd
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  users: storeState.userManagement.users,
   loads: storeState.load.entities,
   driverEntity: storeState.driver.entity,
   loading: storeState.driver.loading,
@@ -227,6 +248,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getUsers,
   getLoads,
   getEntity,
   updateEntity,

@@ -36,6 +36,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.grupoamigo.backend.domain.enumeration.LoadType;
+import com.grupoamigo.backend.domain.enumeration.LoadStatusType;
 /**
  * Integration tests for the {@link LoadResource} REST controller.
  */
@@ -50,6 +51,9 @@ public class LoadResourceIT {
 
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final LoadStatusType DEFAULT_STATUS = LoadStatusType.ESPERANDO_CARGA;
+    private static final LoadStatusType UPDATED_STATUS = LoadStatusType.ESPERANDO_DESCARGA;
 
     @Autowired
     private LoadRepository loadRepository;
@@ -106,7 +110,8 @@ public class LoadResourceIT {
         Load load = new Load()
             .type(DEFAULT_TYPE)
             .uniqueId(DEFAULT_UNIQUE_ID)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .status(DEFAULT_STATUS);
         return load;
     }
     /**
@@ -119,7 +124,8 @@ public class LoadResourceIT {
         Load load = new Load()
             .type(UPDATED_TYPE)
             .uniqueId(UPDATED_UNIQUE_ID)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .status(UPDATED_STATUS);
         return load;
     }
 
@@ -146,6 +152,7 @@ public class LoadResourceIT {
         assertThat(testLoad.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testLoad.getUniqueId()).isEqualTo(DEFAULT_UNIQUE_ID);
         assertThat(testLoad.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testLoad.getStatus()).isEqualTo(DEFAULT_STATUS);
 
         // Validate the Load in Elasticsearch
         verify(mockLoadSearchRepository, times(1)).save(testLoad);
@@ -223,7 +230,8 @@ public class LoadResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(load.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].uniqueId").value(hasItem(DEFAULT_UNIQUE_ID.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -272,7 +280,8 @@ public class LoadResourceIT {
             .andExpect(jsonPath("$.id").value(load.getId().intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.uniqueId").value(DEFAULT_UNIQUE_ID.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -298,7 +307,8 @@ public class LoadResourceIT {
         updatedLoad
             .type(UPDATED_TYPE)
             .uniqueId(UPDATED_UNIQUE_ID)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .status(UPDATED_STATUS);
 
         restLoadMockMvc.perform(put("/api/loads")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -312,6 +322,7 @@ public class LoadResourceIT {
         assertThat(testLoad.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testLoad.getUniqueId()).isEqualTo(UPDATED_UNIQUE_ID);
         assertThat(testLoad.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testLoad.getStatus()).isEqualTo(UPDATED_STATUS);
 
         // Validate the Load in Elasticsearch
         verify(mockLoadSearchRepository, times(1)).save(testLoad);
@@ -373,7 +384,8 @@ public class LoadResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(load.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].uniqueId").value(hasItem(DEFAULT_UNIQUE_ID)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test

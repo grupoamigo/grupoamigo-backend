@@ -49,7 +49,11 @@ public class Company implements Serializable {
     @Column(name = "logo_content_type")
     private String logoContentType;
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "employer")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Membership> memberships = new HashSet<>();
+
+    @OneToMany(mappedBy = "companies")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Contract> contracts = new HashSet<>();
 
@@ -60,6 +64,14 @@ public class Company implements Serializable {
     @OneToOne(mappedBy = "provider")
     @JsonIgnore
     private Manouver manouver;
+
+    @OneToMany(mappedBy = "suppliers")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Client> suppliers = new HashSet<>();
+
+    @OneToMany(mappedBy = "clients")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Client> clients = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -135,6 +147,31 @@ public class Company implements Serializable {
         this.logoContentType = logoContentType;
     }
 
+    public Set<Membership> getMemberships() {
+        return memberships;
+    }
+
+    public Company memberships(Set<Membership> memberships) {
+        this.memberships = memberships;
+        return this;
+    }
+
+    public Company addMembership(Membership membership) {
+        this.memberships.add(membership);
+        membership.setEmployer(this);
+        return this;
+    }
+
+    public Company removeMembership(Membership membership) {
+        this.memberships.remove(membership);
+        membership.setEmployer(null);
+        return this;
+    }
+
+    public void setMemberships(Set<Membership> memberships) {
+        this.memberships = memberships;
+    }
+
     public Set<Contract> getContracts() {
         return contracts;
     }
@@ -146,13 +183,13 @@ public class Company implements Serializable {
 
     public Company addContract(Contract contract) {
         this.contracts.add(contract);
-        contract.setCompany(this);
+        contract.setCompanies(this);
         return this;
     }
 
     public Company removeContract(Contract contract) {
         this.contracts.remove(contract);
-        contract.setCompany(null);
+        contract.setCompanies(null);
         return this;
     }
 
@@ -184,6 +221,56 @@ public class Company implements Serializable {
 
     public void setManouver(Manouver manouver) {
         this.manouver = manouver;
+    }
+
+    public Set<Client> getSuppliers() {
+        return suppliers;
+    }
+
+    public Company suppliers(Set<Client> clients) {
+        this.suppliers = clients;
+        return this;
+    }
+
+    public Company addSupplier(Client client) {
+        this.suppliers.add(client);
+        client.setSuppliers(this);
+        return this;
+    }
+
+    public Company removeSupplier(Client client) {
+        this.suppliers.remove(client);
+        client.setSuppliers(null);
+        return this;
+    }
+
+    public void setSuppliers(Set<Client> clients) {
+        this.suppliers = clients;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public Company clients(Set<Client> clients) {
+        this.clients = clients;
+        return this;
+    }
+
+    public Company addClient(Client client) {
+        this.clients.add(client);
+        client.setClients(this);
+        return this;
+    }
+
+    public Company removeClient(Client client) {
+        this.clients.remove(client);
+        client.setClients(null);
+        return this;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

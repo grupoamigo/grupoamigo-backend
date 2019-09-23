@@ -20,6 +20,7 @@
       "name": "Name",
       "division": "Division",
       "owner": "Owner",
+      "loadList": "Load List",
       "load": "Load"
     }
   }

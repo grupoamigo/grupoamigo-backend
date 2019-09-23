@@ -9,6 +9,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
+import { ICompany } from 'app/shared/model/company.model';
+import { getEntities as getCompanies } from 'app/entities/company/company.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './membership.reducer';
 import { IMembership } from 'app/shared/model/membership.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
@@ -19,6 +21,7 @@ export interface IMembershipUpdateProps extends StateProps, DispatchProps, Route
 export interface IMembershipUpdateState {
   isNew: boolean;
   userId: string;
+  employerId: string;
 }
 
 export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IMembershipUpdateState> {
@@ -26,6 +29,7 @@ export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IM
     super(props);
     this.state = {
       userId: '0',
+      employerId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -44,6 +48,7 @@ export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IM
     }
 
     this.props.getUsers();
+    this.props.getCompanies();
   }
 
   saveEntity = (event, errors, values) => {
@@ -69,7 +74,7 @@ export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IM
   };
 
   render() {
-    const { membershipEntity, users, loading, updating } = this.props;
+    const { membershipEntity, users, companies, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -167,6 +172,21 @@ export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IM
                       : null}
                   </AvInput>
                 </AvGroup>
+                <AvGroup>
+                  <Label for="membership-employer">
+                    <Translate contentKey="grupoamigoBackendApp.membership.employer">Employer</Translate>
+                  </Label>
+                  <AvInput id="membership-employer" type="select" className="form-control" name="employer.id">
+                    <option value="" key="0" />
+                    {companies
+                      ? companies.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.legalName}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/membership" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -191,6 +211,7 @@ export class MembershipUpdate extends React.Component<IMembershipUpdateProps, IM
 
 const mapStateToProps = (storeState: IRootState) => ({
   users: storeState.userManagement.users,
+  companies: storeState.company.entities,
   membershipEntity: storeState.membership.entity,
   loading: storeState.membership.loading,
   updating: storeState.membership.updating,
@@ -199,6 +220,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getUsers,
+  getCompanies,
   getEntity,
   updateEntity,
   createEntity,

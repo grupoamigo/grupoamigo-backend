@@ -62,7 +62,7 @@ describe('Contract e2e test', () => {
       await contractUpdatePage.setExpirationDateInput('01-01-2001');
       expect(await contractUpdatePage.getExpirationDateInput()).to.eq('2001-01-01');
       await contractUpdatePage.statusSelectLastOption();
-      await contractUpdatePage.companySelectLastOption();
+      await contractUpdatePage.companiesSelectLastOption();
       await waitUntilDisplayed(contractUpdatePage.getSaveButton());
       await contractUpdatePage.save();
       await waitUntilHidden(contractUpdatePage.getSaveButton());

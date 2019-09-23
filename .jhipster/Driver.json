@@ -31,6 +31,13 @@
     ],
     "relationships": [
         {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "user",
+            "otherEntityField": "email"
+        },
+        {
             "relationshipType": "many-to-many",
             "otherEntityName": "load",
             "otherEntityRelationshipName": "drivers",

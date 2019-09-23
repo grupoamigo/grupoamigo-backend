@@ -7,6 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IServiceQuote } from 'app/shared/model/service-quote.model';
+import { getEntities as getServiceQuotes } from 'app/entities/service-quote/service-quote.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './service-request.reducer';
 import { IServiceRequest } from 'app/shared/model/service-request.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
@@ -16,12 +18,14 @@ export interface IServiceRequestUpdateProps extends StateProps, DispatchProps, R
 
 export interface IServiceRequestUpdateState {
   isNew: boolean;
+  serviceQuoteId: string;
 }
 
 export class ServiceRequestUpdate extends React.Component<IServiceRequestUpdateProps, IServiceRequestUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      serviceQuoteId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -38,6 +42,8 @@ export class ServiceRequestUpdate extends React.Component<IServiceRequestUpdateP
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getServiceQuotes();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +69,7 @@ export class ServiceRequestUpdate extends React.Component<IServiceRequestUpdateP
   };
 
   render() {
-    const { serviceRequestEntity, loading, updating } = this.props;
+    const { serviceRequestEntity, serviceQuotes, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -170,6 +176,21 @@ export class ServiceRequestUpdate extends React.Component<IServiceRequestUpdateP
                     <option value="CANCELADO">{translate('grupoamigoBackendApp.StatusType.CANCELADO')}</option>
                   </AvInput>
                 </AvGroup>
+                <AvGroup>
+                  <Label for="service-request-serviceQuote">
+                    <Translate contentKey="grupoamigoBackendApp.serviceRequest.serviceQuote">Service Quote</Translate>
+                  </Label>
+                  <AvInput id="service-request-serviceQuote" type="select" className="form-control" name="serviceQuote.id">
+                    <option value="" key="0" />
+                    {serviceQuotes
+                      ? serviceQuotes.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.title}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/service-request" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -193,6 +214,7 @@ export class ServiceRequestUpdate extends React.Component<IServiceRequestUpdateP
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  serviceQuotes: storeState.serviceQuote.entities,
   serviceRequestEntity: storeState.serviceRequest.entity,
   loading: storeState.serviceRequest.loading,
   updating: storeState.serviceRequest.updating,
@@ -200,6 +222,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getServiceQuotes,
   getEntity,
   updateEntity,
   createEntity,

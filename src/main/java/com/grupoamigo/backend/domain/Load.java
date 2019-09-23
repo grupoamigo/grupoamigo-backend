@@ -1,4 +1,5 @@
 package com.grupoamigo.backend.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,6 +12,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.grupoamigo.backend.domain.enumeration.LoadType;
+
+import com.grupoamigo.backend.domain.enumeration.LoadStatusType;
 
 /**
  * A Load.
@@ -40,6 +43,10 @@ public class Load implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private LoadStatusType status;
+
     @OneToOne
     @JoinColumn(unique = true)
     private Warehouse warehouse;
@@ -50,6 +57,10 @@ public class Load implements Serializable {
                joinColumns = @JoinColumn(name = "load_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "drivers_id", referencedColumnName = "id"))
     private Set<Driver> drivers = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties("loadLists")
+    private Warehouse warehouses;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -99,6 +110,19 @@ public class Load implements Serializable {
         this.description = description;
     }
 
+    public LoadStatusType getStatus() {
+        return status;
+    }
+
+    public Load status(LoadStatusType status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(LoadStatusType status) {
+        this.status = status;
+    }
+
     public Warehouse getWarehouse() {
         return warehouse;
     }
@@ -136,6 +160,19 @@ public class Load implements Serializable {
     public void setDrivers(Set<Driver> drivers) {
         this.drivers = drivers;
     }
+
+    public Warehouse getWarehouses() {
+        return warehouses;
+    }
+
+    public Load warehouses(Warehouse warehouse) {
+        this.warehouses = warehouse;
+        return this;
+    }
+
+    public void setWarehouses(Warehouse warehouse) {
+        this.warehouses = warehouse;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -161,6 +198,7 @@ public class Load implements Serializable {
             ", type='" + getType() + "'" +
             ", uniqueId='" + getUniqueId() + "'" +
             ", description='" + getDescription() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

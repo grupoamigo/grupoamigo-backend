@@ -20,8 +20,10 @@
       "type": "Type",
       "uniqueId": "Unique Id",
       "description": "Description",
+      "status": "Status",
       "warehouse": "Warehouse",
-      "drivers": "Drivers"
+      "drivers": "Drivers",
+      "warehouses": "Warehouses"
     }
   }
 }

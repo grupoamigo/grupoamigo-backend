@@ -53,6 +53,7 @@ describe('Driver e2e test', () => {
       await driverUpdatePage.setLastNameInput('lastName');
       expect(await driverUpdatePage.getLastNameInput()).to.match(/lastName/);
       await driverUpdatePage.setPictureInput(absolutePath);
+      await driverUpdatePage.userSelectLastOption();
       await waitUntilDisplayed(driverUpdatePage.getSaveButton());
       await driverUpdatePage.save();
       await waitUntilHidden(driverUpdatePage.getSaveButton());

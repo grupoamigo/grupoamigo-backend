@@ -7,8 +7,10 @@ export default class LoadUpdatePage {
   typeSelect: ElementFinder = element(by.css('select#load-type'));
   uniqueIdInput: ElementFinder = element(by.css('input#load-uniqueId'));
   descriptionInput: ElementFinder = element(by.css('input#load-description'));
+  statusSelect: ElementFinder = element(by.css('select#load-status'));
   warehouseSelect: ElementFinder = element(by.css('select#load-warehouse'));
   driversSelect: ElementFinder = element(by.css('select#load-drivers'));
+  warehousesSelect: ElementFinder = element(by.css('select#load-warehouses'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -44,6 +46,20 @@ export default class LoadUpdatePage {
     return this.descriptionInput.getAttribute('value');
   }
 
+  async setStatusSelect(status) {
+    await this.statusSelect.sendKeys(status);
+  }
+
+  async getStatusSelect() {
+    return this.statusSelect.element(by.css('option:checked')).getText();
+  }
+
+  async statusSelectLastOption() {
+    await this.statusSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
   async warehouseSelectLastOption() {
     await this.warehouseSelect
       .all(by.tagName('option'))
@@ -80,6 +96,25 @@ export default class LoadUpdatePage {
 
   async getDriversSelectedOption() {
     return this.driversSelect.element(by.css('option:checked')).getText();
+  }
+
+  async warehousesSelectLastOption() {
+    await this.warehousesSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async warehousesSelectOption(option) {
+    await this.warehousesSelect.sendKeys(option);
+  }
+
+  getWarehousesSelect() {
+    return this.warehousesSelect;
+  }
+
+  async getWarehousesSelectedOption() {
+    return this.warehousesSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

@@ -21,7 +21,8 @@
       "created": "Created",
       "expires": "Expires",
       "accountLevel": "Account Level",
-      "user": "User"
+      "user": "User",
+      "employer": "Employer"
     }
   }
 }

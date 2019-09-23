@@ -8,6 +8,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.grupoamigo.backend.domain.enumeration.DivisionType;
 
@@ -39,6 +41,10 @@ public class Warehouse implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Company owner;
+
+    @OneToMany(mappedBy = "warehouses")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Load> loadLists = new HashSet<>();
 
     @OneToOne(mappedBy = "warehouse")
     @JsonIgnore
@@ -90,6 +96,31 @@ public class Warehouse implements Serializable {
 
     public void setOwner(Company company) {
         this.owner = company;
+    }
+
+    public Set<Load> getLoadLists() {
+        return loadLists;
+    }
+
+    public Warehouse loadLists(Set<Load> loads) {
+        this.loadLists = loads;
+        return this;
+    }
+
+    public Warehouse addLoadList(Load load) {
+        this.loadLists.add(load);
+        load.setWarehouses(this);
+        return this;
+    }
+
+    public Warehouse removeLoadList(Load load) {
+        this.loadLists.remove(load);
+        load.setWarehouses(null);
+        return this;
+    }
+
+    public void setLoadLists(Set<Load> loads) {
+        this.loadLists = loads;
     }
 
     public Load getLoad() {

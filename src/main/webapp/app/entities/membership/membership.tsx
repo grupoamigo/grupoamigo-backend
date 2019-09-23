@@ -98,6 +98,9 @@ export class Membership extends React.Component<IMembershipProps, IMembershipSta
                   <th>
                     <Translate contentKey="grupoamigoBackendApp.membership.user">User</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.membership.employer">Employer</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -122,6 +125,9 @@ export class Membership extends React.Component<IMembershipProps, IMembershipSta
                       <Translate contentKey={`grupoamigoBackendApp.MembershipLevelType.${membership.accountLevel}`} />
                     </td>
                     <td>{membership.user ? membership.user.email : ''}</td>
+                    <td>
+                      {membership.employer ? <Link to={`company/${membership.employer.id}`}>{membership.employer.legalName}</Link> : ''}
+                    </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${membership.id}`} color="info" size="sm">

@@ -62,7 +62,14 @@
             "fieldTypeBlobContent": "image"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "serviceRequest",
+            "otherEntityRelationshipName": "serviceQuote",
+            "relationshipName": "serviceRequest"
+        }
+    ],
     "changelogDate": "20190922062837",
     "entityTableName": "service_quote",
     "dto": "no",

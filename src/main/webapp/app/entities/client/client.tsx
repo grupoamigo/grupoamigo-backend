@@ -95,6 +95,12 @@ export class Client extends React.Component<IClientProps, IClientState> {
                   <th>
                     <Translate contentKey="grupoamigoBackendApp.client.internalNotes">Internal Notes</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.client.suppliers">Suppliers</Translate>
+                  </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.client.clients">Clients</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -114,6 +120,8 @@ export class Client extends React.Component<IClientProps, IClientState> {
                       <Translate contentKey={`grupoamigoBackendApp.ClientStatusType.${client.status}`} />
                     </td>
                     <td>{client.internalNotes}</td>
+                    <td>{client.suppliers ? <Link to={`company/${client.suppliers.id}`}>{client.suppliers.legalName}</Link> : ''}</td>
+                    <td>{client.clients ? <Link to={`company/${client.clients.id}`}>{client.clients.legalName}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${client.id}`} color="info" size="sm">

@@ -4,8 +4,36 @@ import { Switch } from 'react-router-dom';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import { View, TouchableOpacity, Text } from 'react-native-web';
+import styled from "styled-components"
 
-//import Company from './company';
+const SquareButton = styled(TouchableOpacity)`
+  background-color: #222;
+  flex: 1;
+  min-width: 50%;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+`
+
+const SquareButtonText = styled(Text)`
+  color: #EEE;
+  font-size: 18px;
+  padding: 27px;
+`
+
+const ButtonsContainer = styled(View)`
+  flex: 2;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+`
+
+const H1 = styled(Text)`
+  font-size: 32px;
+  width: 100%;
+  margin-bottom: 24px;
+`
+// import Company from './company';
 import Membership from './membership';
 // import Client from './client';
 // import Manouver from './manouver';
@@ -59,12 +87,33 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/route`} component={Route} />
       jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
-    <View>
-      <h1>Bienvenido a tu portal AMIGO</h1>
-      <TouchableOpacity>
-        <Text>Tap</Text>
-      </TouchableOpacity>
-    </View>
+    {
+      match.url === '/screens/' && 
+      <ButtonsContainer>
+        <H1>Bienvenido a tu portal AMIGO</H1>
+        <SquareButton>
+          <SquareButtonText>Mi Cuenta</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Clientes</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Contratos</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Empresas</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Servicios</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Maniobras</SquareButtonText>
+        </SquareButton>
+        <SquareButton>
+          <SquareButtonText>Transportes</SquareButtonText>
+        </SquareButton>
+      </ButtonsContainer>
+    }
   </div>
 );
 

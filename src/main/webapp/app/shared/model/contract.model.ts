@@ -18,7 +18,7 @@ export interface IContract {
   dateSigned?: Moment;
   expirationDate?: Moment;
   status?: ContractStatusType;
-  company?: ICompany;
+  companies?: ICompany;
 }
 
 export const defaultValue: Readonly<IContract> = {};

@@ -8,6 +8,8 @@ export default class ClientUpdatePage {
   memberSinceInput: ElementFinder = element(by.css('input#client-memberSince'));
   statusSelect: ElementFinder = element(by.css('select#client-status'));
   internalNotesInput: ElementFinder = element(by.css('input#client-internalNotes'));
+  suppliersSelect: ElementFinder = element(by.css('select#client-suppliers'));
+  clientsSelect: ElementFinder = element(by.css('select#client-clients'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -49,6 +51,44 @@ export default class ClientUpdatePage {
 
   async getInternalNotesInput() {
     return this.internalNotesInput.getAttribute('value');
+  }
+
+  async suppliersSelectLastOption() {
+    await this.suppliersSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async suppliersSelectOption(option) {
+    await this.suppliersSelect.sendKeys(option);
+  }
+
+  getSuppliersSelect() {
+    return this.suppliersSelect;
+  }
+
+  async getSuppliersSelectedOption() {
+    return this.suppliersSelect.element(by.css('option:checked')).getText();
+  }
+
+  async clientsSelectLastOption() {
+    await this.clientsSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async clientsSelectOption(option) {
+    await this.clientsSelect.sendKeys(option);
+  }
+
+  getClientsSelect() {
+    return this.clientsSelect;
+  }
+
+  async getClientsSelectedOption() {
+    return this.clientsSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

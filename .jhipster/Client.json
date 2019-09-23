@@ -19,7 +19,22 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "supplier",
+            "relationshipName": "suppliers",
+            "otherEntityField": "legalName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "client",
+            "relationshipName": "clients",
+            "otherEntityField": "legalName"
+        }
+    ],
     "changelogDate": "20190922062826",
     "entityTableName": "client",
     "dto": "no",

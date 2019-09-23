@@ -7,6 +7,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { ICompany } from 'app/shared/model/company.model';
+import { getEntities as getCompanies } from 'app/entities/company/company.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './client.reducer';
 import { IClient } from 'app/shared/model/client.model';
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
@@ -16,12 +18,16 @@ export interface IClientUpdateProps extends StateProps, DispatchProps, RouteComp
 
 export interface IClientUpdateState {
   isNew: boolean;
+  suppliersId: string;
+  clientsId: string;
 }
 
 export class ClientUpdate extends React.Component<IClientUpdateProps, IClientUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      suppliersId: '0',
+      clientsId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -38,6 +44,8 @@ export class ClientUpdate extends React.Component<IClientUpdateProps, IClientUpd
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getCompanies();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +71,7 @@ export class ClientUpdate extends React.Component<IClientUpdateProps, IClientUpd
   };
 
   render() {
-    const { clientEntity, loading, updating } = this.props;
+    const { clientEntity, companies, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -134,6 +142,36 @@ export class ClientUpdate extends React.Component<IClientUpdateProps, IClientUpd
                   </Label>
                   <AvField id="client-internalNotes" type="text" name="internalNotes" />
                 </AvGroup>
+                <AvGroup>
+                  <Label for="client-suppliers">
+                    <Translate contentKey="grupoamigoBackendApp.client.suppliers">Suppliers</Translate>
+                  </Label>
+                  <AvInput id="client-suppliers" type="select" className="form-control" name="suppliers.id">
+                    <option value="" key="0" />
+                    {companies
+                      ? companies.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.legalName}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="client-clients">
+                    <Translate contentKey="grupoamigoBackendApp.client.clients">Clients</Translate>
+                  </Label>
+                  <AvInput id="client-clients" type="select" className="form-control" name="clients.id">
+                    <option value="" key="0" />
+                    {companies
+                      ? companies.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.legalName}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/client" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -157,6 +195,7 @@ export class ClientUpdate extends React.Component<IClientUpdateProps, IClientUpd
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  companies: storeState.company.entities,
   clientEntity: storeState.client.entity,
   loading: storeState.client.loading,
   updating: storeState.client.updating,
@@ -164,6 +203,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getCompanies,
   getEntity,
   updateEntity,
   createEntity,

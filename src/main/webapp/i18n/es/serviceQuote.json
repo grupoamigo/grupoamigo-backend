@@ -27,7 +27,8 @@
       "status": "Status",
       "currency": "Currency",
       "approvedBy": "Approved By",
-      "qrCode": "Qr Code"
+      "qrCode": "Qr Code",
+      "serviceRequest": "Service Request"
     }
   }
 }

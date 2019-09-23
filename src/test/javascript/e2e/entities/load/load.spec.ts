@@ -49,8 +49,10 @@ describe('Load e2e test', () => {
       expect(await loadUpdatePage.getUniqueIdInput()).to.match(/uniqueId/);
       await loadUpdatePage.setDescriptionInput('description');
       expect(await loadUpdatePage.getDescriptionInput()).to.match(/description/);
+      await loadUpdatePage.statusSelectLastOption();
       await loadUpdatePage.warehouseSelectLastOption();
       // loadUpdatePage.driversSelectLastOption();
+      await loadUpdatePage.warehousesSelectLastOption();
       await waitUntilDisplayed(loadUpdatePage.getSaveButton());
       await loadUpdatePage.save();
       await waitUntilHidden(loadUpdatePage.getSaveButton());

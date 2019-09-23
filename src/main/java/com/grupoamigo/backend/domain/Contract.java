@@ -80,7 +80,7 @@ public class Contract implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("contracts")
-    private Company company;
+    private Company companies;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -260,17 +260,17 @@ public class Contract implements Serializable {
         this.status = status;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCompanies() {
+        return companies;
     }
 
-    public Contract company(Company company) {
-        this.company = company;
+    public Contract companies(Company company) {
+        this.companies = company;
         return this;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanies(Company company) {
+        this.companies = company;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -58,6 +58,10 @@ export class MembershipDetail extends React.Component<IMembershipDetailProps> {
               <Translate contentKey="grupoamigoBackendApp.membership.user">User</Translate>
             </dt>
             <dd>{membershipEntity.user ? membershipEntity.user.email : ''}</dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.membership.employer">Employer</Translate>
+            </dt>
+            <dd>{membershipEntity.employer ? membershipEntity.employer.legalName : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/membership" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

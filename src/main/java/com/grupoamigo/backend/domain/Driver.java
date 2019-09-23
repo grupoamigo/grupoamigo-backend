@@ -1,5 +1,6 @@
 package com.grupoamigo.backend.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -49,6 +50,10 @@ public class Driver implements Serializable {
 
     @Column(name = "picture_content_type")
     private String pictureContentType;
+
+    @ManyToOne
+    @JsonIgnoreProperties("drivers")
+    private User user;
 
     @ManyToMany(mappedBy = "drivers")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -140,6 +145,19 @@ public class Driver implements Serializable {
 
     public void setPictureContentType(String pictureContentType) {
         this.pictureContentType = pictureContentType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Driver user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<Load> getLoads() {

@@ -93,10 +93,16 @@ export class Load extends React.Component<ILoadProps, ILoadState> {
                     <Translate contentKey="grupoamigoBackendApp.load.description">Description</Translate>
                   </th>
                   <th>
+                    <Translate contentKey="grupoamigoBackendApp.load.status">Status</Translate>
+                  </th>
+                  <th>
                     <Translate contentKey="grupoamigoBackendApp.load.warehouse">Warehouse</Translate>
                   </th>
                   <th>
                     <Translate contentKey="grupoamigoBackendApp.load.drivers">Drivers</Translate>
+                  </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.load.warehouses">Warehouses</Translate>
                   </th>
                   <th />
                 </tr>
@@ -114,6 +120,9 @@ export class Load extends React.Component<ILoadProps, ILoadState> {
                     </td>
                     <td>{load.uniqueId}</td>
                     <td>{load.description}</td>
+                    <td>
+                      <Translate contentKey={`grupoamigoBackendApp.LoadStatusType.${load.status}`} />
+                    </td>
                     <td>{load.warehouse ? <Link to={`warehouse/${load.warehouse.id}`}>{load.warehouse.name}</Link> : ''}</td>
                     <td>
                       {load.drivers
@@ -125,6 +134,7 @@ export class Load extends React.Component<ILoadProps, ILoadState> {
                           ))
                         : null}
                     </td>
+                    <td>{load.warehouses ? <Link to={`warehouse/${load.warehouses.id}`}>{load.warehouses.name}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${load.id}`} color="info" size="sm">

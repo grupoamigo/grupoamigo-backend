@@ -75,6 +75,10 @@ export class DriverDetail extends React.Component<IDriverDetailProps> {
                 </div>
               ) : null}
             </dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.driver.user">User</Translate>
+            </dt>
+            <dd>{driverEntity.user ? driverEntity.user.email : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/driver" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

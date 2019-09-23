@@ -101,6 +101,9 @@ export class ServiceRequest extends React.Component<IServiceRequestProps, IServi
                   <th>
                     <Translate contentKey="grupoamigoBackendApp.serviceRequest.status">Status</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.serviceRequest.serviceQuote">Service Quote</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -125,6 +128,13 @@ export class ServiceRequest extends React.Component<IServiceRequestProps, IServi
                     </td>
                     <td>
                       <Translate contentKey={`grupoamigoBackendApp.StatusType.${serviceRequest.status}`} />
+                    </td>
+                    <td>
+                      {serviceRequest.serviceQuote ? (
+                        <Link to={`service-quote/${serviceRequest.serviceQuote.id}`}>{serviceRequest.serviceQuote.title}</Link>
+                      ) : (
+                        ''
+                      )}
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">

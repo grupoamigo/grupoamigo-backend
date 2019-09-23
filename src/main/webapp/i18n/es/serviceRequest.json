@@ -22,7 +22,8 @@
       "dateRequested": "Date Requested",
       "dateBegin": "Date Begin",
       "dateEnd": "Date End",
-      "status": "Status"
+      "status": "Status",
+      "serviceQuote": "Service Quote"
     }
   }
 }

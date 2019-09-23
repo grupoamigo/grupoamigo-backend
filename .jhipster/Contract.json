@@ -61,7 +61,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "company",
             "otherEntityRelationshipName": "contract",
-            "relationshipName": "company",
+            "relationshipName": "companies",
             "otherEntityField": "legalName"
         }
     ],

@@ -123,6 +123,10 @@ public class CacheConfiguration {
             createCache(cm, com.grupoamigo.backend.domain.Route.class.getName() + ".locations");
             createCache(cm, com.grupoamigo.backend.domain.Route.class.getName() + ".drivers");
             createCache(cm, com.grupoamigo.backend.domain.Warehouse.class.getName() + ".loadLists");
+            createCache(cm, com.grupoamigo.backend.domain.Company.class.getName() + ".memberships");
+            createCache(cm, com.grupoamigo.backend.domain.Company.class.getName() + ".suppliers");
+            createCache(cm, com.grupoamigo.backend.domain.Company.class.getName() + ".clients");
+            createCache(cm, com.grupoamigo.backend.domain.ServiceQuote.class.getName() + ".serviceRequests");
             // jhipster-needle-ehcache-add-entry
         };
     }

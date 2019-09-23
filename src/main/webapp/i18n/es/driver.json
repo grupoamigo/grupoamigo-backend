@@ -21,6 +21,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "picture": "Picture",
+      "user": "User",
       "loads": "Loads"
     }
   }

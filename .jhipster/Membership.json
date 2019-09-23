@@ -27,6 +27,13 @@
             "otherEntityRelationshipName": "membership",
             "relationshipName": "user",
             "otherEntityField": "email"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "membership",
+            "relationshipName": "employer",
+            "otherEntityField": "legalName"
         }
     ],
     "changelogDate": "20190922062825",

@@ -39,7 +39,15 @@
             "fieldValues": "PROCESANDO,CONFIRMADO,ACTIVO,EN_ESPERA,TERMINADO,CANCELADO"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "serviceQuote",
+            "otherEntityRelationshipName": "serviceRequest",
+            "relationshipName": "serviceQuote",
+            "otherEntityField": "title"
+        }
+    ],
     "changelogDate": "20190922062838",
     "entityTableName": "service_request",
     "dto": "no",

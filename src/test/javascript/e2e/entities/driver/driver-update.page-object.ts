@@ -8,6 +8,7 @@ export default class DriverUpdatePage {
   firstNameInput: ElementFinder = element(by.css('input#driver-firstName'));
   lastNameInput: ElementFinder = element(by.css('input#driver-lastName'));
   pictureInput: ElementFinder = element(by.css('input#file_picture'));
+  userSelect: ElementFinder = element(by.css('select#driver-user'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -43,6 +44,25 @@ export default class DriverUpdatePage {
 
   async getPictureInput() {
     return this.pictureInput.getAttribute('value');
+  }
+
+  async userSelectLastOption() {
+    await this.userSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async userSelectOption(option) {
+    await this.userSelect.sendKeys(option);
+  }
+
+  getUserSelect() {
+    return this.userSelect;
+  }
+
+  async getUserSelectedOption() {
+    return this.userSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

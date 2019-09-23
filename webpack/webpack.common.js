@@ -47,7 +47,10 @@ module.exports = options => ({
       '.js', '.jsx', '.ts', '.tsx', '.json'
     ],
     modules: ['node_modules'],
-    alias: utils.mapTypescriptAliasToWebpackAlias()
+    alias: utils.mapTypescriptAliasToWebpackAlias({
+      'react-native$': 'react-native-web',
+      'react-native-svg$': 'react-native-web-svg',
+    })
   },
   module: {
     rules: [

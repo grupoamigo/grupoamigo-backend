@@ -22,6 +22,7 @@ export interface ILoadUpdateState {
   isNew: boolean;
   idsdrivers: any[];
   warehouseId: string;
+  warehousesId: string;
 }
 
 export class LoadUpdate extends React.Component<ILoadUpdateProps, ILoadUpdateState> {
@@ -30,6 +31,7 @@ export class LoadUpdate extends React.Component<ILoadUpdateProps, ILoadUpdateSta
     this.state = {
       idsdrivers: [],
       warehouseId: '0',
+      warehousesId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -139,6 +141,31 @@ export class LoadUpdate extends React.Component<ILoadUpdateProps, ILoadUpdateSta
                   <AvField id="load-description" type="text" name="description" />
                 </AvGroup>
                 <AvGroup>
+                  <Label id="statusLabel" for="load-status">
+                    <Translate contentKey="grupoamigoBackendApp.load.status">Status</Translate>
+                  </Label>
+                  <AvInput
+                    id="load-status"
+                    type="select"
+                    className="form-control"
+                    name="status"
+                    value={(!isNew && loadEntity.status) || 'ESPERANDO_CARGA'}
+                  >
+                    <option value="ESPERANDO_CARGA">{translate('grupoamigoBackendApp.LoadStatusType.ESPERANDO_CARGA')}</option>
+                    <option value="ESPERANDO_DESCARGA">{translate('grupoamigoBackendApp.LoadStatusType.ESPERANDO_DESCARGA')}</option>
+                    <option value="EN_TRANSITO_MARITIMO">{translate('grupoamigoBackendApp.LoadStatusType.EN_TRANSITO_MARITIMO')}</option>
+                    <option value="EN_TRANSITO_TERRESTRE">{translate('grupoamigoBackendApp.LoadStatusType.EN_TRANSITO_TERRESTRE')}</option>
+                    <option value="EN_ADUANA">{translate('grupoamigoBackendApp.LoadStatusType.EN_ADUANA')}</option>
+                    <option value="ENTREGADO">{translate('grupoamigoBackendApp.LoadStatusType.ENTREGADO')}</option>
+                    <option value="EN_INSPECCION">{translate('grupoamigoBackendApp.LoadStatusType.EN_INSPECCION')}</option>
+                    <option value="PERDIDO">{translate('grupoamigoBackendApp.LoadStatusType.PERDIDO')}</option>
+                    <option value="DANADO">{translate('grupoamigoBackendApp.LoadStatusType.DANADO')}</option>
+                    <option value="ROBADO">{translate('grupoamigoBackendApp.LoadStatusType.ROBADO')}</option>
+                    <option value="EN_REPARACION">{translate('grupoamigoBackendApp.LoadStatusType.EN_REPARACION')}</option>
+                    <option value="TRANSFORMADA">{translate('grupoamigoBackendApp.LoadStatusType.TRANSFORMADA')}</option>
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
                   <Label for="load-warehouse">
                     <Translate contentKey="grupoamigoBackendApp.load.warehouse">Warehouse</Translate>
                   </Label>
@@ -170,6 +197,21 @@ export class LoadUpdate extends React.Component<ILoadUpdateProps, ILoadUpdateSta
                       ? drivers.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
                             {otherEntity.officialId}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="load-warehouses">
+                    <Translate contentKey="grupoamigoBackendApp.load.warehouses">Warehouses</Translate>
+                  </Label>
+                  <AvInput id="load-warehouses" type="select" className="form-control" name="warehouses.id">
+                    <option value="" key="0" />
+                    {warehouses
+                      ? warehouses.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}

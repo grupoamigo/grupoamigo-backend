@@ -14,7 +14,7 @@ export default class ContractUpdatePage {
   dateSignedInput: ElementFinder = element(by.css('input#contract-dateSigned'));
   expirationDateInput: ElementFinder = element(by.css('input#contract-expirationDate'));
   statusSelect: ElementFinder = element(by.css('select#contract-status'));
-  companySelect: ElementFinder = element(by.css('select#contract-company'));
+  companiesSelect: ElementFinder = element(by.css('select#contract-companies'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -112,23 +112,23 @@ export default class ContractUpdatePage {
       .last()
       .click();
   }
-  async companySelectLastOption() {
-    await this.companySelect
+  async companiesSelectLastOption() {
+    await this.companiesSelect
       .all(by.tagName('option'))
       .last()
       .click();
   }
 
-  async companySelectOption(option) {
-    await this.companySelect.sendKeys(option);
+  async companiesSelectOption(option) {
+    await this.companiesSelect.sendKeys(option);
   }
 
-  getCompanySelect() {
-    return this.companySelect;
+  getCompaniesSelect() {
+    return this.companiesSelect;
   }
 
-  async getCompanySelectedOption() {
-    return this.companySelect.element(by.css('option:checked')).getText();
+  async getCompaniesSelectedOption() {
+    return this.companiesSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

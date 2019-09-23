@@ -20,7 +20,9 @@
       "uniqueId": "Unique Id",
       "memberSince": "Member Since",
       "status": "Status",
-      "internalNotes": "Internal Notes"
+      "internalNotes": "Internal Notes",
+      "suppliers": "Suppliers",
+      "clients": "Clients"
     }
   }
 }

@@ -18,14 +18,14 @@ export interface IContractUpdateProps extends StateProps, DispatchProps, RouteCo
 
 export interface IContractUpdateState {
   isNew: boolean;
-  companyId: string;
+  companiesId: string;
 }
 
 export class ContractUpdate extends React.Component<IContractUpdateProps, IContractUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
-      companyId: '0',
+      companiesId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -287,10 +287,10 @@ export class ContractUpdate extends React.Component<IContractUpdateProps, IContr
                   </AvInput>
                 </AvGroup>
                 <AvGroup>
-                  <Label for="contract-company">
-                    <Translate contentKey="grupoamigoBackendApp.contract.company">Company</Translate>
+                  <Label for="contract-companies">
+                    <Translate contentKey="grupoamigoBackendApp.contract.companies">Companies</Translate>
                   </Label>
-                  <AvInput id="contract-company" type="select" className="form-control" name="company.id">
+                  <AvInput id="contract-companies" type="select" className="form-control" name="companies.id">
                     <option value="" key="0" />
                     {companies
                       ? companies.map(otherEntity => (

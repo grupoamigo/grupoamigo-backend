@@ -1,4 +1,5 @@
 package com.grupoamigo.backend.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
@@ -41,6 +42,14 @@ public class Client implements Serializable {
 
     @Column(name = "internal_notes")
     private String internalNotes;
+
+    @ManyToOne
+    @JsonIgnoreProperties("suppliers")
+    private Company suppliers;
+
+    @ManyToOne
+    @JsonIgnoreProperties("clients")
+    private Company clients;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -101,6 +110,32 @@ public class Client implements Serializable {
 
     public void setInternalNotes(String internalNotes) {
         this.internalNotes = internalNotes;
+    }
+
+    public Company getSuppliers() {
+        return suppliers;
+    }
+
+    public Client suppliers(Company company) {
+        this.suppliers = company;
+        return this;
+    }
+
+    public void setSuppliers(Company company) {
+        this.suppliers = company;
+    }
+
+    public Company getClients() {
+        return clients;
+    }
+
+    public Client clients(Company company) {
+        this.clients = company;
+        return this;
+    }
+
+    public void setClients(Company company) {
+        this.clients = company;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

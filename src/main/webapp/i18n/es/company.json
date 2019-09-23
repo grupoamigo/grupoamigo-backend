@@ -21,9 +21,12 @@
       "taxId": "Tax Id",
       "type": "Type",
       "logo": "Logo",
+      "membership": "Membership",
       "contract": "Contract",
       "warehouse": "Warehouse",
-      "manouver": "Manouver"
+      "manouver": "Manouver",
+      "supplier": "Supplier",
+      "client": "Client"
     }
   }
 }

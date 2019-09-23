@@ -26,5 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="driver"/>
         
+        <addForeignKeyConstraint baseColumnNames="warehouses_id"
+                                 baseTableName="jhi_load"
+                                 constraintName="fk_jhi_load_warehouses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="warehouse"/>
+
     </changeSet>
 </databaseChangeLog>

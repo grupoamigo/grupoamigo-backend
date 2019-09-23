@@ -51,6 +51,7 @@ describe('Membership e2e test', () => {
       expect(await membershipUpdatePage.getExpiresInput()).to.eq('2001-01-01');
       await membershipUpdatePage.accountLevelSelectLastOption();
       await membershipUpdatePage.userSelectLastOption();
+      await membershipUpdatePage.employerSelectLastOption();
       await waitUntilDisplayed(membershipUpdatePage.getSaveButton());
       await membershipUpdatePage.save();
       await waitUntilHidden(membershipUpdatePage.getSaveButton());

@@ -1,3 +1,4 @@
+import { IUser } from 'app/shared/model/user.model';
 import { ILoad } from 'app/shared/model/load.model';
 
 export interface IDriver {
@@ -8,6 +9,7 @@ export interface IDriver {
   lastName?: string;
   pictureContentType?: string;
   picture?: any;
+  user?: IUser;
   loads?: ILoad[];
 }
 

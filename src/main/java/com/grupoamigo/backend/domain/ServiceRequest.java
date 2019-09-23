@@ -1,4 +1,5 @@
 package com.grupoamigo.backend.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,6 +51,10 @@ public class ServiceRequest implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusType status;
+
+    @ManyToOne
+    @JsonIgnoreProperties("serviceRequests")
+    private ServiceQuote serviceQuote;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -136,6 +141,19 @@ public class ServiceRequest implements Serializable {
 
     public void setStatus(StatusType status) {
         this.status = status;
+    }
+
+    public ServiceQuote getServiceQuote() {
+        return serviceQuote;
+    }
+
+    public ServiceRequest serviceQuote(ServiceQuote serviceQuote) {
+        this.serviceQuote = serviceQuote;
+        return this;
+    }
+
+    public void setServiceQuote(ServiceQuote serviceQuote) {
+        this.serviceQuote = serviceQuote;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

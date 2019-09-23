@@ -27,7 +27,7 @@
       "dateSigned": "Date Signed",
       "expirationDate": "Expiration Date",
       "status": "Status",
-      "company": "Company"
+      "companies": "Companies"
     }
   }
 }

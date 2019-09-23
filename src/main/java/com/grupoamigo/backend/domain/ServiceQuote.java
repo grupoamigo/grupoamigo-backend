@@ -9,6 +9,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.grupoamigo.backend.domain.enumeration.ServiceUnitType;
 
@@ -75,6 +77,10 @@ public class ServiceQuote implements Serializable {
 
     @Column(name = "qr_code_content_type")
     private String qrCodeContentType;
+
+    @OneToMany(mappedBy = "serviceQuote")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ServiceRequest> serviceRequests = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -239,6 +245,31 @@ public class ServiceQuote implements Serializable {
 
     public void setQrCodeContentType(String qrCodeContentType) {
         this.qrCodeContentType = qrCodeContentType;
+    }
+
+    public Set<ServiceRequest> getServiceRequests() {
+        return serviceRequests;
+    }
+
+    public ServiceQuote serviceRequests(Set<ServiceRequest> serviceRequests) {
+        this.serviceRequests = serviceRequests;
+        return this;
+    }
+
+    public ServiceQuote addServiceRequest(ServiceRequest serviceRequest) {
+        this.serviceRequests.add(serviceRequest);
+        serviceRequest.setServiceQuote(this);
+        return this;
+    }
+
+    public ServiceQuote removeServiceRequest(ServiceRequest serviceRequest) {
+        this.serviceRequests.remove(serviceRequest);
+        serviceRequest.setServiceQuote(null);
+        return this;
+    }
+
+    public void setServiceRequests(Set<ServiceRequest> serviceRequests) {
+        this.serviceRequests = serviceRequests;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

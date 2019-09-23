@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="employer_id"
+                                 baseTableName="membership"
+                                 constraintName="fk_membership_employer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+
     </changeSet>
 </databaseChangeLog>

@@ -95,6 +95,9 @@ export class Driver extends React.Component<IDriverProps, IDriverState> {
                   <th>
                     <Translate contentKey="grupoamigoBackendApp.driver.picture">Picture</Translate>
                   </th>
+                  <th>
+                    <Translate contentKey="grupoamigoBackendApp.driver.user">User</Translate>
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -134,6 +137,7 @@ export class Driver extends React.Component<IDriverProps, IDriverState> {
                         </div>
                       ) : null}
                     </td>
+                    <td>{driver.user ? driver.user.email : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${driver.id}`} color="info" size="sm">

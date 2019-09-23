@@ -27,6 +27,12 @@
             "ownerSide": true
         },
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "load",
+            "otherEntityRelationshipName": "warehouses",
+            "relationshipName": "loadList"
+        },
+        {
             "relationshipType": "one-to-one",
             "otherEntityName": "load",
             "otherEntityRelationshipName": "warehouse",

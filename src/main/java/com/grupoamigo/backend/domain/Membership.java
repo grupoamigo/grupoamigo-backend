@@ -48,6 +48,10 @@ public class Membership implements Serializable {
     @JsonIgnoreProperties("memberships")
     private User user;
 
+    @ManyToOne
+    @JsonIgnoreProperties("memberships")
+    private Company employer;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -120,6 +124,19 @@ public class Membership implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Company getEmployer() {
+        return employer;
+    }
+
+    public Membership employer(Company company) {
+        this.employer = company;
+        return this;
+    }
+
+    public void setEmployer(Company company) {
+        this.employer = company;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

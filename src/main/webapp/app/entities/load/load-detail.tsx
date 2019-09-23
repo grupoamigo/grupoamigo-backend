@@ -45,6 +45,12 @@ export class LoadDetail extends React.Component<ILoadDetailProps> {
             </dt>
             <dd>{loadEntity.description}</dd>
             <dt>
+              <span id="status">
+                <Translate contentKey="grupoamigoBackendApp.load.status">Status</Translate>
+              </span>
+            </dt>
+            <dd>{loadEntity.status}</dd>
+            <dt>
               <Translate contentKey="grupoamigoBackendApp.load.warehouse">Warehouse</Translate>
             </dt>
             <dd>{loadEntity.warehouse ? loadEntity.warehouse.name : ''}</dd>
@@ -61,6 +67,10 @@ export class LoadDetail extends React.Component<ILoadDetailProps> {
                   ))
                 : null}
             </dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.load.warehouses">Warehouses</Translate>
+            </dt>
+            <dd>{loadEntity.warehouses ? loadEntity.warehouses.name : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/load" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -52,6 +52,14 @@ export class ClientDetail extends React.Component<IClientDetailProps> {
               </span>
             </dt>
             <dd>{clientEntity.internalNotes}</dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.client.suppliers">Suppliers</Translate>
+            </dt>
+            <dd>{clientEntity.suppliers ? clientEntity.suppliers.legalName : ''}</dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.client.clients">Clients</Translate>
+            </dt>
+            <dd>{clientEntity.clients ? clientEntity.clients.legalName : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/client" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

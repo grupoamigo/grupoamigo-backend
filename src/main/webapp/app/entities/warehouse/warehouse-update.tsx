@@ -21,6 +21,7 @@ export interface IWarehouseUpdateProps extends StateProps, DispatchProps, RouteC
 export interface IWarehouseUpdateState {
   isNew: boolean;
   ownerId: string;
+  loadListId: string;
   loadId: string;
 }
 
@@ -29,6 +30,7 @@ export class WarehouseUpdate extends React.Component<IWarehouseUpdateProps, IWar
     super(props);
     this.state = {
       ownerId: '0',
+      loadListId: '0',
       loadId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };

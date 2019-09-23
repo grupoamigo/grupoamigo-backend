@@ -7,6 +7,7 @@ export interface IWarehouse {
   name?: string;
   division?: DivisionType;
   owner?: ICompany;
+  loadLists?: ILoad[];
   load?: ILoad;
 }
 

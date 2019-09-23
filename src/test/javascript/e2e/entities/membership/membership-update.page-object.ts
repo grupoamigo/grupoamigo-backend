@@ -9,6 +9,7 @@ export default class MembershipUpdatePage {
   expiresInput: ElementFinder = element(by.css('input#membership-expires'));
   accountLevelSelect: ElementFinder = element(by.css('select#membership-accountLevel'));
   userSelect: ElementFinder = element(by.css('select#membership-user'));
+  employerSelect: ElementFinder = element(by.css('select#membership-employer'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -75,6 +76,25 @@ export default class MembershipUpdatePage {
 
   async getUserSelectedOption() {
     return this.userSelect.element(by.css('option:checked')).getText();
+  }
+
+  async employerSelectLastOption() {
+    await this.employerSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async employerSelectOption(option) {
+    await this.employerSelect.sendKeys(option);
+  }
+
+  getEmployerSelect() {
+    return this.employerSelect;
+  }
+
+  async getEmployerSelectedOption() {
+    return this.employerSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

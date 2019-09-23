@@ -10,6 +10,7 @@ export default class ServiceRequestUpdatePage {
   dateBeginInput: ElementFinder = element(by.css('input#service-request-dateBegin'));
   dateEndInput: ElementFinder = element(by.css('input#service-request-dateEnd'));
   statusSelect: ElementFinder = element(by.css('select#service-request-status'));
+  serviceQuoteSelect: ElementFinder = element(by.css('select#service-request-serviceQuote'));
 
   getPageTitle() {
     return this.pageTitle;
@@ -69,6 +70,25 @@ export default class ServiceRequestUpdatePage {
       .last()
       .click();
   }
+  async serviceQuoteSelectLastOption() {
+    await this.serviceQuoteSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async serviceQuoteSelectOption(option) {
+    await this.serviceQuoteSelect.sendKeys(option);
+  }
+
+  getServiceQuoteSelect() {
+    return this.serviceQuoteSelect;
+  }
+
+  async getServiceQuoteSelectedOption() {
+    return this.serviceQuoteSelect.element(by.css('option:checked')).getText();
+  }
+
   async save() {
     await this.saveButton.click();
   }

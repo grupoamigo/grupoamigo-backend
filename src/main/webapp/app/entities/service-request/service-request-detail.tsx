@@ -69,6 +69,10 @@ export class ServiceRequestDetail extends React.Component<IServiceRequestDetailP
               </span>
             </dt>
             <dd>{serviceRequestEntity.status}</dd>
+            <dt>
+              <Translate contentKey="grupoamigoBackendApp.serviceRequest.serviceQuote">Service Quote</Translate>
+            </dt>
+            <dd>{serviceRequestEntity.serviceQuote ? serviceRequestEntity.serviceQuote.title : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/service-request" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

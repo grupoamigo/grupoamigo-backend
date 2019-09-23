@@ -51,6 +51,8 @@ describe('Client e2e test', () => {
       await clientUpdatePage.statusSelectLastOption();
       await clientUpdatePage.setInternalNotesInput('internalNotes');
       expect(await clientUpdatePage.getInternalNotesInput()).to.match(/internalNotes/);
+      await clientUpdatePage.suppliersSelectLastOption();
+      await clientUpdatePage.clientsSelectLastOption();
       await waitUntilDisplayed(clientUpdatePage.getSaveButton());
       await clientUpdatePage.save();
       await waitUntilHidden(clientUpdatePage.getSaveButton());

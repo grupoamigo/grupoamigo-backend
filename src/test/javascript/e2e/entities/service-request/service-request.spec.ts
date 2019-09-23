@@ -57,6 +57,7 @@ describe('ServiceRequest e2e test', () => {
       await serviceRequestUpdatePage.setDateEndInput('01-01-2001');
       expect(await serviceRequestUpdatePage.getDateEndInput()).to.eq('2001-01-01');
       await serviceRequestUpdatePage.statusSelectLastOption();
+      await serviceRequestUpdatePage.serviceQuoteSelectLastOption();
       await waitUntilDisplayed(serviceRequestUpdatePage.getSaveButton());
       await serviceRequestUpdatePage.save();
       await waitUntilHidden(serviceRequestUpdatePage.getSaveButton());

@@ -32,8 +32,14 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
+            "otherEntityName": "membership",
+            "otherEntityRelationshipName": "employer",
+            "relationshipName": "membership"
+        },
+        {
+            "relationshipType": "one-to-many",
             "otherEntityName": "contract",
-            "otherEntityRelationshipName": "company",
+            "otherEntityRelationshipName": "companies",
             "relationshipName": "contract"
         },
         {
@@ -49,6 +55,18 @@
             "otherEntityRelationshipName": "provider",
             "relationshipName": "manouver",
             "ownerSide": false
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "suppliers",
+            "relationshipName": "supplier"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "clients",
+            "relationshipName": "client"
         }
     ],
     "changelogDate": "20190922062824",

@@ -14,29 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="driver_id"
-                                 baseTableName="driver_clients"
-                                 constraintName="fk_driver_clients_driver_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="driver"/>
-
-        <addForeignKeyConstraint baseColumnNames="clients_id"
-                                 baseTableName="driver_clients"
-                                 constraintName="fk_driver_clients_clients_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="company"/>
-        
-        <addForeignKeyConstraint baseColumnNames="driver_id"
-                                 baseTableName="driver_route"
-                                 constraintName="fk_driver_route_driver_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="driver"/>
-
-        <addForeignKeyConstraint baseColumnNames="route_id"
-                                 baseTableName="driver_route"
-                                 constraintName="fk_driver_route_route_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="route"/>
-        
     </changeSet>
 </databaseChangeLog>
