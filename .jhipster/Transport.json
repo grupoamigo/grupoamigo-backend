@@ -1,0 +1,27 @@
+{
+    "name": "Transport",
+    "fields": [
+        {
+            "fieldName": "plateId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TransportType",
+            "fieldValues": "CAMION,FFCC"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190922062844",
+    "entityTableName": "transport",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

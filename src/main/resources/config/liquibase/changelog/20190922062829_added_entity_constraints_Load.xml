@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Load.
+    -->
+    <changeSet id="20190922062829-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="warehouse_id"
+                                 baseTableName="jhi_load"
+                                 constraintName="fk_jhi_load_warehouse_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="warehouse"/>
+
+        <addForeignKeyConstraint baseColumnNames="load_id"
+                                 baseTableName="jhi_load_drivers"
+                                 constraintName="fk_jhi_load_drivers_jhi_load_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_load"/>
+
+        <addForeignKeyConstraint baseColumnNames="drivers_id"
+                                 baseTableName="jhi_load_drivers"
+                                 constraintName="fk_jhi_load_drivers_drivers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="driver"/>
+        
+    </changeSet>
+</databaseChangeLog>

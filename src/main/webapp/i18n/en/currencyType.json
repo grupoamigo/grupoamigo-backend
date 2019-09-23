@@ -1,0 +1,9 @@
+{
+  "grupoamigoBackendApp": {
+    "CurrencyType": {
+      "null": "",
+      "MXN": "MXN",
+      "USD": "USD"
+    }
+  }
+}

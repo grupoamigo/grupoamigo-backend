@@ -1,0 +1,77 @@
+{
+    "name": "Contract",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "ContractType",
+            "fieldValues": "PRESTACION_DE_SERVICIO,TERMINOS_Y_CONDICIONES,DECISION_INTERNA,SOLICITUD_DE_SERVICIO,SOLICITU_DE_MANIOBRA,INSPECCION,EMPLEADO,CONFIDENCIALIDAD",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "legalProse",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "signature",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "contractFile",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "qrCode",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "digitalFingerprint",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateSigned",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "expirationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ContractStatusType",
+            "fieldValues": "EMITIDO,FIRMADO,ACTIVO,CANCELADO,PAUSADO,TERMINADO"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "contract",
+            "relationshipName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190922062839",
+    "entityTableName": "contract",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

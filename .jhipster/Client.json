@@ -1,0 +1,32 @@
+{
+    "name": "Client",
+    "fields": [
+        {
+            "fieldName": "uniqueId",
+            "fieldType": "UUID"
+        },
+        {
+            "fieldName": "memberSince",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ClientStatusType",
+            "fieldValues": "ACTIVO,SOLICITUD,APROBADO,VERIFICADO,DECLINADO,CANCELADO,PAUSADO"
+        },
+        {
+            "fieldName": "internalNotes",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190922062826",
+    "entityTableName": "client",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

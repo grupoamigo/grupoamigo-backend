@@ -1,0 +1,41 @@
+{
+    "name": "Membership",
+    "fields": [
+        {
+            "fieldName": "role",
+            "fieldType": "MembershipRole",
+            "fieldValues": "CEO,VP,JEFE_DE_DIVISION,SUPERVISOR,INSPECTOR,VIGILANTE,CHOFER,ADMINISTRATIVO"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "expires",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "accountLevel",
+            "fieldType": "MembershipLevelType",
+            "fieldValues": "FREE,BASIC,PRO,ENTERPRISE"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "membership",
+            "relationshipName": "user",
+            "otherEntityField": "email"
+        }
+    ],
+    "changelogDate": "20190922062825",
+    "entityTableName": "membership",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

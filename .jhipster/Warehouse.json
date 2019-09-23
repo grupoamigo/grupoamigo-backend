@@ -1,0 +1,46 @@
+{
+    "name": "Warehouse",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "division",
+            "fieldType": "DivisionType",
+            "fieldValues": "INTERMODAL,FERTILIZANTES,POLIETILENO,TUBERIA,LACTEOS,CERVEZA,SAGARPA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "warehouse",
+            "relationshipName": "owner",
+            "otherEntityField": "legalName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "load",
+            "otherEntityRelationshipName": "warehouse",
+            "relationshipName": "load",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190922062845",
+    "entityTableName": "warehouse",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
