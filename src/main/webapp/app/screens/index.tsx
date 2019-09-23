@@ -1,9 +1,11 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, NavLink } from 'react-router-dom';
+
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import { View, TouchableOpacity, Text } from 'react-native-web';
+import { Button } from 'reactstrap';
 import styled from "styled-components"
 
 const SquareButton = styled(TouchableOpacity)`
@@ -13,9 +15,11 @@ const SquareButton = styled(TouchableOpacity)`
   min-height: 150px;
   align-items: center;
   justify-content: center;
+  display: flex;
+  text-transform: capitalize;
 `
 
-const SquareButtonText = styled(Text)`
+const SquareButtonText = styled(Button)`
   color: #EEE;
   font-size: 18px;
   padding: 27px;
@@ -91,26 +95,74 @@ const Routes = ({ match }) => (
       match.url === '/screens/' && 
       <ButtonsContainer>
         <H1>Bienvenido a tu portal AMIGO</H1>
-        <SquareButton>
-          <SquareButtonText>Mi Cuenta</SquareButtonText>
+        <SquareButton to="/entity/company">
+          <SquareButtonText contentKey="global.menu.entities.">company</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Clientes</SquareButtonText>
+        <SquareButton to="/entity/membership">
+          <SquareButtonText contentKey="global.menu.entities.">membership</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Contratos</SquareButtonText>
+        <SquareButton to="/entity/client">
+          <SquareButtonText contentKey="global.menu.entities.">client</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Empresas</SquareButtonText>
+        <SquareButton to="/entity/manouver">
+          <SquareButtonText contentKey="global.menu.entities.">manouver</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Servicios</SquareButtonText>
+        <SquareButton to="/entity/manouver-request">
+          <SquareButtonText contentKey="global.menu.entities.">manouverRequest</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Maniobras</SquareButtonText>
+        <SquareButton to="/entity/load">
+          <SquareButtonText contentKey="global.menu.entities.">load</SquareButtonText>
         </SquareButton>
-        <SquareButton>
-          <SquareButtonText>Transportes</SquareButtonText>
+        <SquareButton to="/entity/seal">
+          <SquareButtonText contentKey="global.menu.entities.">seal</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/extra-field">
+          <SquareButtonText contentKey="global.menu.entities.">extraField</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/location">
+          <SquareButtonText contentKey="global.menu.entities.">location</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/country-code">
+          <SquareButtonText contentKey="global.menu.entities.">countryCode</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/state-code">
+          <SquareButtonText contentKey="global.menu.entities.">stateCode</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/contact-card">
+          <SquareButtonText contentKey="global.menu.entities.">contactCard</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/service">
+          <SquareButtonText contentKey="global.menu.entities.">service</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/service-quote">
+          <SquareButtonText contentKey="global.menu.entities.">serviceQuote</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/service-request">
+          <SquareButtonText contentKey="global.menu.entities.">serviceRequest</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/contract">
+          <SquareButtonText contentKey="global.menu.entities.">contract</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/inspection">
+          <SquareButtonText contentKey="global.menu.entities.">inspection</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/evidence">
+          <SquareButtonText contentKey="global.menu.entities.">evidence</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/damage">
+          <SquareButtonText contentKey="global.menu.entities.">damage</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/driver">
+          <SquareButtonText contentKey="global.menu.entities.">driver</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/transport">
+          <SquareButtonText contentKey="global.menu.entities.">transport</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/warehouse">
+          <SquareButtonText contentKey="global.menu.entities.">warehouse</SquareButtonText>
+        </SquareButton>
+        <SquareButton to="/entity/route">
+          <SquareButtonText contentKey="global.menu.entities.">route</SquareButtonText>
         </SquareButton>
       </ButtonsContainer>
     }
