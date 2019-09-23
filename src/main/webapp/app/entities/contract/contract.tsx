@@ -181,7 +181,7 @@ export class Contract extends React.Component<IContractProps, IContractState> {
                     <td>
                       <Translate contentKey={`grupoamigoBackendApp.ContractStatusType.${contract.status}`} />
                     </td>
-                    <td>{contract.company ? <Link to={`company/${contract.company.id}`}>{contract.company.id}</Link> : ''}</td>
+                    <td>{contract.company ? <Link to={`company/${contract.company.id}`}>{contract.company.legalName}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${contract.id}`} color="info" size="sm">

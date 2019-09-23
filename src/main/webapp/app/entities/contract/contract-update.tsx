@@ -295,7 +295,7 @@ export class ContractUpdate extends React.Component<IContractUpdateProps, IContr
                     {companies
                       ? companies.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                            {otherEntity.legalName}
                           </option>
                         ))
                       : null}

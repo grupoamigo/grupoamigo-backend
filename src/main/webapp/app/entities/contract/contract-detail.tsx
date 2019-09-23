@@ -129,7 +129,7 @@ export class ContractDetail extends React.Component<IContractDetailProps> {
             <dt>
               <Translate contentKey="grupoamigoBackendApp.contract.company">Company</Translate>
             </dt>
-            <dd>{contractEntity.company ? contractEntity.company.id : ''}</dd>
+            <dd>{contractEntity.company ? contractEntity.company.legalName : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/contract" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

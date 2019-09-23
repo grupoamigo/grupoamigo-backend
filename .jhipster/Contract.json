@@ -62,7 +62,7 @@
             "otherEntityName": "company",
             "otherEntityRelationshipName": "contract",
             "relationshipName": "company",
-            "otherEntityField": "id"
+            "otherEntityField": "legalName"
         }
     ],
     "changelogDate": "20190922062839",
